@@ -1,15 +1,22 @@
 import { StyleSheet } from 'react-native';
-
+import { ScrollView } from 'react-native'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+import categories from '../assets/data/categories';
+import MovieCategory from '../components/MovieCategory';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab 1</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+       <ScrollView>
+        <View style={styles.container}  >
+            {categories.items.map(
+                item => <MovieCategory key={item.id}  category={item}  />
+                
+            )}
+        </View>
+        </ScrollView>
     </View>
   );
 }
